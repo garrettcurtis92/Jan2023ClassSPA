@@ -1,7 +1,15 @@
-import html from "html-literal"
+import html from "html-literal";
 
-export default () => html`
-<section id="jumbotron">
+export default state => html`
+  <section id="jumbotron">
     <h2>SavvyCoders JavaScript Fullstack Bootcamp</h2>
     <a href="index.html">"Call to Action" "Button"</a>
-  </section>`;
+  </section>
+
+  <h3>Today's weather</h3>
+  <p>
+    The current weather in ${state.weather.city} is
+    ${state.weather.description}. The temp is ${state.weather.temp} degrees and
+    feels like ${state.weather.feelsLike}
+  </p>
+`;
