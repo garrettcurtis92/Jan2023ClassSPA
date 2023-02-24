@@ -35,7 +35,10 @@ router.hooks({
     // Add a switch case statement to handle multiple routes
     switch (view) {
       case "Home":
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=st%20louis&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}`)
+        axios
+          .get(
+            `https://api.openweathermap.org/data/2.5/weather?q=st%20louis&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}`
+          )
           .then(response => {
             console.log(response.data);
             const kelvinToFahrenheit = kelvinTemp =>
@@ -54,6 +57,22 @@ router.hooks({
               response.data.weather[0].description;
             console.log(store.Home.weather);
 
+            done();
+          });
+        break;
+      // New Case for Pizza View
+      case "Pizza":
+        // New Axios get request utilizing already made environment variable
+        axios
+          .get(`${process.env.PIZZA_PLACE_API_URL}/pizzas`)
+          .then(response => {
+            console.log(response.data);
+            // Storing retrieved data in state
+            store.Pizza.pizzas = response.data;
+            done();
+          })
+          .catch(error => {
+            console.log("It puked", error);
             done();
           });
         break;
