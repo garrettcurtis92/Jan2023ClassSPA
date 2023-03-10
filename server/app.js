@@ -22,7 +22,6 @@ const logging = (request, response, next) => {
   console.log(`${request.method} ${request.url} ${Date.now()}`);
   next();
 };
-
 // CORS Middleware
 const cors = (req, res, next) => {
   res.setHeader(
@@ -45,13 +44,7 @@ app.get("/status", (request, response) => {
   // Create the headers for response by default 200
   // Create the response body
   // End and return the response
-  // Handle the request with HTTP GET method from http://localhost:4040/status
-  app.get("/status", (request, response) => {
-    // Create the headers for response by default 200
-    // Create the response body
-    // End and return the response
-    response.json({ message: "Service healthy" });
-  });
+  response.status(418).json({ message: "Service healthy" });
 });
 app.get("/weather/:city", (request, response) => {
   // Express adds a "params" Object to requests that has an matches parameter created using the colon syntax
