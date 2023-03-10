@@ -45,7 +45,13 @@ app.get("/status", (request, response) => {
   // Create the headers for response by default 200
   // Create the response body
   // End and return the response
-  response.status(418).json({ message: "Service healthy" });
+  // Handle the request with HTTP GET method from http://localhost:4040/status
+  app.get("/status", (request, response) => {
+    // Create the headers for response by default 200
+    // Create the response body
+    // End and return the response
+    response.json({ message: "Service healthy" });
+  });
 });
 app.get("/weather/:city", (request, response) => {
   // Express adds a "params" Object to requests that has an matches parameter created using the colon syntax
